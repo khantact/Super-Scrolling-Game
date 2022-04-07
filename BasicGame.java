@@ -104,9 +104,9 @@ public class BasicGame extends AbstractGame {
 
     // Spawn new Entities on the right edge of the game board
     protected void spawnEntities() {
-        avoid = new Avoid(DEFAULT_WIDTH, rand.nextInt(DEFAULT_HEIGHT - 100));
-        get = new Get(DEFAULT_WIDTH, rand.nextInt(DEFAULT_HEIGHT - 100));
-        rget = new RareGet(DEFAULT_WIDTH, rand.nextInt(DEFAULT_HEIGHT - 100));
+        avoid = new Avoid(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
+        get = new Get(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
+        rget = new RareGet(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
 
         if (rand.nextInt(2) == 0) {
             displayList.add(avoid);
@@ -169,14 +169,15 @@ public class BasicGame extends AbstractGame {
         }
         // react to movement
         if (!isPaused) {
-            if (key == downArrow && player.getY() <= (DEFAULT_HEIGHT - (player.getHeight() + player.getHeight() / 2))) {
+            if (key == downArrow
+                    && player.getY() <= (this.getWindowHeight() - (player.getHeight() + player.getHeight() / 2))) {
                 player.setY(player.getY() + player.getMovementSpeed());
             } else if (key == upArrow && player.getY() > 0) {
                 player.setY(player.getY() - player.getMovementSpeed());
             } else if (key == leftArrow && player.getX() != 0) {
                 player.setX(player.getX() - player.getMovementSpeed());
             } else if (key == rightArrow
-                    && player.getX() <= (DEFAULT_WIDTH - (player.getWidth() + player.getWidth() / 3))) {
+                    && player.getX() <= (this.getWindowWidth() - (player.getWidth() + player.getWidth() / 3))) {
                 player.setX(player.getX() + player.getMovementSpeed());
             }
         }
@@ -189,10 +190,10 @@ public class BasicGame extends AbstractGame {
 
         // react to speed up
         // uses equals instead of + because otherwise it would be shift + +
-        if (key == KeyEvent.VK_EQUALS) {
+        if (key == KeyEvent.VK_EQUALS && getGameSpeed() < MAX_GAME_SPEED) {
             setGameSpeed(getGameSpeed() + SPEED_CHANGE);
         }
-        if (key == KeyEvent.VK_MINUS) {
+        if (key == KeyEvent.VK_MINUS && getGameSpeed() > SPEED_CHANGE) {
             setGameSpeed(getGameSpeed() - SPEED_CHANGE);
         }
     }
