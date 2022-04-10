@@ -3,7 +3,7 @@
 public class Avoid extends Entity implements Consumable, Scrollable {
 
     // Location of image file to be drawn for an Avoid
-    private static final String AVOID_IMAGE_FILE = "assets/avoid.gif";
+    private static final String AVOID_IMAGE_FILE = "assets/custom/avoid.gif";
     // Dimensions of the Avoid
     private static final int AVOID_WIDTH = 75;
     private static final int AVOID_HEIGHT = 75;
@@ -39,4 +39,8 @@ public class Avoid extends Entity implements Consumable, Scrollable {
         return -1;
     }
 
+    // Creative
+    public void getSound() {
+
+    }
 }

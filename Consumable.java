@@ -3,10 +3,13 @@
 //   -The consumable entity collided with is destroyed
 //   -The player's score and/or HP are modified upon collision.
 public interface Consumable {
-     
-    //The amount that the player's score is modified (positive or negative)    
+
+    // The amount that the player's score is modified (positive or negative)
     public int getPointsValue();
-    //The amount that the player's HP is modified (positive or negative)
+
+    // The amount that the player's HP is modified (positive or negative)
     public int getDamageValue();
-       
+
+    // creative
+    public void getSound();
 }

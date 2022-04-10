@@ -3,7 +3,7 @@ public class Launcher {
 
     // Initializes and launches the game
     public static void main(String[] args) {
-        AbstractGame game = new BasicGame(800, 600);
+        AbstractGame game = new Han(1000, 600);
         game.setDebugMode(true);
         game.play();
     }
