@@ -170,14 +170,14 @@ public class BasicGame extends AbstractGame {
         // react to movement
         if (!isPaused) {
             if (key == downArrow
-                    && player.getY() <= (this.getWindowHeight() - (player.getHeight() + player.getHeight() / 2))) {
+                    && player.getY() <= (this.getWindowHeight() - player.getHeight())) {
                 player.setY(player.getY() + player.getMovementSpeed());
             } else if (key == upArrow && player.getY() > 0) {
                 player.setY(player.getY() - player.getMovementSpeed());
             } else if (key == leftArrow && player.getX() != 0) {
                 player.setX(player.getX() - player.getMovementSpeed());
             } else if (key == rightArrow
-                    && player.getX() <= (this.getWindowWidth() - (player.getWidth() + player.getWidth() / 3))) {
+                    && player.getX() <= (this.getWindowWidth() - player.getWidth())) {
                 player.setX(player.getX() + player.getMovementSpeed());
             }
         }
