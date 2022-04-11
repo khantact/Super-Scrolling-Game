@@ -1,3 +1,4 @@
+
 //An Entity represents some indivdual thing that is drawn to the game window.
 //Everything drawn and animated in the game window is an Entity, including the player.
 //

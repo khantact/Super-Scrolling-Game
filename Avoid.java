@@ -1,3 +1,5 @@
+import Sounds.getCoin;
+
 //Avoids are entities the player needs to avoid colliding with.
 //If a player collides with an avoid, it reduces the players Hit Points (HP).
 public class Avoid extends Entity implements Consumable, Scrollable {
@@ -41,6 +43,6 @@ public class Avoid extends Entity implements Consumable, Scrollable {
 
     // Creative
     public void getSound() {
-
+        getCoin.takeDamage();
     }
 }

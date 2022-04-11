@@ -1,3 +1,4 @@
+
 import Sounds.getCoin;
 
 //Gets are entities that the player wants to collide with, as they increase

@@ -22,8 +22,11 @@ public class BackgroundMusic {
             clip.open(AS);
 
             clip.loop(LOOP_CONTINUOUSLY);
+
         } catch (Exception e) {
             System.out.println(e);
         }
+
     }
+
 }

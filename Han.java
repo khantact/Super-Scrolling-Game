@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.util.*;
 
 import Sounds.BackgroundMusic;
+import Sounds.regularSounds;
 
 public class Han extends AbstractGame {
     // Dimensions of game window
@@ -31,7 +32,7 @@ public class Han extends AbstractGame {
     // ie: once every how many ticks does the game attempt to spawn new Entities
     private static final int SPAWN_INTERVAL = 45;
     // Maximum Entities that can be spawned on a single call to spawnEntities
-    private static final int MAX_SPAWNS = 3;
+    private static final int MAX_SPAWNS = 4;
 
     // A Random object for all your random number generation needs!
     public static final Random rand = new Random();
@@ -45,6 +46,8 @@ public class Han extends AbstractGame {
     private Avoid avoid;
     private Get get;
     private RareGet rget;
+    private copperCoin cCoin;
+    private silverCoin sCoin;
 
     // Didnt see the declarations in AbstractGame sorry
     public static final int rightArrow = KeyEvent.VK_RIGHT;
@@ -78,6 +81,7 @@ public class Han extends AbstractGame {
         if (ticksElapsed % SPAWN_INTERVAL == 0) {
             spawnEntities();
         }
+
         // Update the title text on the top of the window
         setTitleText("HP: " + player.getHP() + " Score: " + score);
 
@@ -87,6 +91,7 @@ public class Han extends AbstractGame {
     protected void scrollEntities() {
         for (int i = 1; i < displayList.size(); i++) {
             Entity obj = displayList.get(i);
+
             if (obj instanceof Scrollable) {
                 ((Scrollable) obj).scroll();
             }
@@ -106,11 +111,17 @@ public class Han extends AbstractGame {
         avoid = new Avoid(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
         get = new Get(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
         rget = new RareGet(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
+        sCoin = new silverCoin(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
+        cCoin = new copperCoin(this.getWindowWidth(), rand.nextInt(this.getWindowHeight() - 100));
 
         if (rand.nextInt(2) == 0) {
             displayList.add(avoid);
-        } else if (rand.nextInt(2) == 1) {
+        } else if (rand.nextInt(5) == 1) {
             displayList.add(get);
+        } else if (rand.nextInt(3) == 1) {
+            displayList.add(sCoin);
+        } else if (rand.nextInt(3) == 1) {
+            displayList.add(cCoin);
         } else if (rand.nextInt(5) == 2) {
             displayList.add(rget);
         }
@@ -121,10 +132,14 @@ public class Han extends AbstractGame {
     // consumable
     protected void handleCollision(Consumable collidedWith) {
         player.modifyHP(collidedWith.getDamageValue());
+        if (score % 100 == 0 && score != 0) {
+            regularSounds.checkPoint();
+        }
         if (score + collidedWith.getPointsValue() >= 0) {
             score += collidedWith.getPointsValue();
         }
         collidedWith.getSound();
+
         displayList.remove((Entity) collidedWith);
         if (isGameOver()) {
             isPaused = true;
@@ -134,11 +149,16 @@ public class Han extends AbstractGame {
 
     // Called once the game is over, performs any end-of-game operations
     protected void postGame() {
+
         if (score >= SCORE_TO_WIN) {
+            super.setSplashImage("assets/custom/winsplash.gif");
             super.setTitleText("Game is over! You win!");
+            regularSounds.gameState(true);
         }
         if (player.getHP() <= 0) {
+            super.setSplashImage("assets/custom/damagedplayer.gif");
             super.setTitleText("Game is over! You lost!");
+            regularSounds.gameState(false);
         }
     }
 
