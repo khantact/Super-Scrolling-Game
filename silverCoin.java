@@ -18,7 +18,7 @@ public class silverCoin extends Get {
         return 0;
     }
 
-    // Creative
+    // Creative - returns what sound the object plays on collsion
     @Override
     public void getSound() {
         getCoin.silverCoin();

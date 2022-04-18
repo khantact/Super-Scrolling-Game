@@ -21,7 +21,7 @@ public class RareGet extends Get {
         return 1;
     }
 
-    // Creative
+    // Creative - returns what sound the object plays on collsion
     @Override
     public void getSound() {
         getCoin.rareCoin();

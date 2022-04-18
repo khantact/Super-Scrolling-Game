@@ -46,7 +46,7 @@ public class Get extends Entity implements Consumable, Scrollable {
         return 0;
     }
 
-    // Creative changes
+    // Creative - returns what sound the object plays on collsion
     public void getSound() {
         getCoin.goldCoin();
     }

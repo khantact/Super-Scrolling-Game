@@ -11,6 +11,7 @@ public class regularSounds {
     private static final String WIN_GAME = "Sounds/assets/winSound.wav";
     private static final String LOSE_GAME = "Sounds/assets/loseSound.wav";
 
+    // Plays checkpoint sound
     public static void checkPoint() {
         File checkpoint = new File(POINTS_CHECKPOINT);
         try {
@@ -23,6 +24,7 @@ public class regularSounds {
         }
     }
 
+    // Plays game state sound (win or loss)
     public static void gameState(boolean state) {
         File gamestate = null;
         try {

@@ -41,7 +41,7 @@ public class Avoid extends Entity implements Consumable, Scrollable {
         return -1;
     }
 
-    // Creative
+    // Creative - returns what sound the object plays on collsion
     public void getSound() {
         getCoin.takeDamage();
     }

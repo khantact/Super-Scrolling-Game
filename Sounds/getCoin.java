@@ -13,6 +13,7 @@ public class getCoin {
     private static final String RARE_COIN_SOUND = "Sounds/assets/rarecoin.wav";
     private static final String DAMAGE_SOUND = "Sounds/assets/avoid.wav";
 
+    // Methods for playing respective sound
     public static void copperCoin() {
         File copperCoin = new File(COPPER_COIN_SOUND);
         try {

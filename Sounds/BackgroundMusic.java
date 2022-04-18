@@ -16,6 +16,7 @@ public class BackgroundMusic {
 
     public static void music() {
         File music = new File(BG_MUSIC);
+        // Initializes the background music and loops through it continuously
         try {
             AudioInputStream AS = AudioSystem.getAudioInputStream(music);
             Clip clip = AudioSystem.getClip();
